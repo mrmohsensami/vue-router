@@ -10,13 +10,13 @@ import NotFound from './pages/NotFound.vue'
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
-        { path: '/home', component: Home },
-        { path: '/about', component: About },
-        // { path: '/posts/:slug', component: Post },
-        { path: '/posts/:postId(\\d+)', component: Post },
-        { path: '/@:username', component: Profile },
-        { path: '/products/:productId?', component: Product },
-        { path: '/:match(.*)', component: NotFound },
+        { path: '/home', component: Home, name:'home' },
+        { path: '/about', component: About, name:'about' },
+        // { path: '/posts/:slug', component: Post, name:'' },
+        { path: '/posts/:postId(\\d+)', component: Post, name:'single' },
+        { path: '/@:username', component: Profile, name:'profile' },
+        { path: '/products/:productId?', component: Product, name:'product' },
+        { path: '/:match(.*)', component: NotFound, name:'404' },
     ]
 })
 
