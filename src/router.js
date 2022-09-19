@@ -12,52 +12,58 @@ import AdminLayout from './layouts/AdminLayout.vue'
 const router = createRouter({
     history: createWebHashHistory(),
     routes:  [
-        {
-          path: '/',
-          component: HomeLayout,
-          children: [
-            {
-              path: '',
-              component: Home,
-              name: 'home' 
-            },
-            {
-              path: 'about',
-              component: About,
-              name: 'about' 
-            },
-            {
-              path: 'posts',
-              component: Post,
-              name: 'post-index' 
-            },
-            {
-              path: 'posts/:postId(\\d+)',
-              component: Post,
-              name: 'posts-show' 
-            },
-            {
-              path: 'products/:productId?',
-              component: Product,
-              name: 'products-show' 
-            },
-          ]
-        },
-        {
-          path: '/admin',
-          component: AdminLayout,
-          children: [
-            {
-              path: '@:username', // /admin/@tofiq
-              component: Profile 
-            },
-          ]
-        },
-        {
-          path: '/:match(.*)',
-          component: NotFound
-         }
-      ]      
+      {
+        path: '/',
+        component: HomeLayout,
+        children: [
+          {
+            path: '',
+            component: Home,
+            name: 'home',
+            alias: ['/home']
+          },
+          {
+            path: 'about',
+            component: About,
+            name: 'about' 
+          },
+          {
+            path: 'posts',
+            component: Post,
+            name: 'post-index' 
+          },
+          {
+            path: 'posts/:postId(\\d+)',
+            component: Post,
+            name: 'posts-show' 
+          },
+          {
+            path: 'products/:productId?',
+            component: Product,
+            name: 'products-show' 
+          },
+        ]
+      },
+      {
+        path: '/admin',
+        component: AdminLayout,
+        children: [
+          {
+            path: '@:username', // /admin/@tofiq
+            component: Profile,
+            alias: ['@:username/profile', ':username/posts'] // /admin/@tofiq/profile - /admin/tofiq/posts
+          },
+        ]
+      },
+      {
+        path: '/404',
+        component: NotFound
+      },
+      {
+        path: '/:match(.*)',
+        redirect: '/404'
+      }
+    ]
 })
 
 export default router
