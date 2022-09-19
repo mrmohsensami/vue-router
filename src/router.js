@@ -35,12 +35,13 @@ const router = createRouter({
           {
             path: 'posts/:postId(\\d+)',
             component: Post,
-            name: 'posts-show' 
+            name: 'posts-show',
+            props: true
           },
           {
             path: 'products/:productId?',
             component: Product,
-            name: 'products-show' 
+            name: 'products-show',
           },
         ]
       },
