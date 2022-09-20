@@ -74,26 +74,43 @@ const router = createRouter({
 })
 
 
-router.beforeEach((to, from, next) => {
-  if (to.name === 'products-show') {
-    // return '/auth/login'
-    // return { name: 'login' }
+// router.beforeEach((to, from, next) => {
+//   if (to.name === 'products-show') {
+//     // return '/auth/login'
+//     // return { name: 'login' }
     
-    // return next('/auth/login')
-    return next({ name: "login" })
-  }
+//     // return next('/auth/login')
+//     return next({ name: "login" })
+//   }
 
-  if (to.name === 'posts-show') {
-    // return false
-    return next(false)
-  }
-  return next()
+//   if (to.name === 'posts-show') {
+//     // return false
+//     return next(false)
+//   }
+//   return next()
+// })
+
+
+
+// router.beforeResolve((to, from) => {
+//   if (to.name === 'products-show') {
+//     return { name: 'login' }
+//   }
+
+//   if (to.name === 'posts-show') {
+//     // try {
+//     //   await axios.post('...')
+//     // } catch (error) {
+      
+//     // }
+//     return false
+//   }
+// })
+
+
+router.afterEach((to, from, failure) => {
+  console.log({ to, from, failure })
 })
-
-
-
-// router.beforeResolve()
-// router.afterEach()
 
 
 export default router
