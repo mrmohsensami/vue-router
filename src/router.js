@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 import Home from './pages/Home.vue'
 import About from './pages/About.vue'
 import Post from './pages/Post.vue'
+import Login from './pages/Login.vue'
 import Profile from './pages/Profile.vue'
 import Product from './pages/Product.vue'
 import NotFound from './pages/NotFound.vue'
@@ -21,6 +22,11 @@ const router = createRouter({
             component: Home,
             name: 'home',
             alias: ['/home']
+          },
+          {
+            path: 'auth/login',
+            component: Login,
+            name: 'login',
           },
           {
             path: 'about',
@@ -66,5 +72,28 @@ const router = createRouter({
       }
     ]
 })
+
+
+router.beforeEach((to, from, next) => {
+  if (to.name === 'products-show') {
+    // return '/auth/login'
+    // return { name: 'login' }
+    
+    // return next('/auth/login')
+    return next({ name: "login" })
+  }
+
+  if (to.name === 'posts-show') {
+    // return false
+    return next(false)
+  }
+  return next()
+})
+
+
+
+// router.beforeResolve()
+// router.afterEach()
+
 
 export default router
