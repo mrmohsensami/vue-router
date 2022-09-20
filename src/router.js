@@ -10,6 +10,19 @@ import NotFound from './pages/NotFound.vue'
 import HomeLayout from './layouts/HomeLayout.vue'
 import AdminLayout from './layouts/AdminLayout.vue'
 
+// vue-cli -- webpack
+// const Home = () => import(/* webpackChunkName: home */ '../pages/Home.vue')
+const Home = () => import('./pages/Home.vue')
+const About = () => import('./pages/About.vue')
+const Post = () => import('./pages/Post.vue')
+const Login = () => import('./pages/Login.vue')
+const Profile = () => import('./pages/Profile.vue')
+const Product = () => import('./pages/Product.vue')
+const NotFound = () => import('./pages/NotFound.vue')
+const HomeLayout = () => import('./layouts/HomeLayout.vue')
+const AdminLayout = () => import('./layouts/AdminLayout.vue')
+
+
 // import auth from './middlewares/auth.js'
 
 const router = createRouter({
