@@ -10,6 +10,8 @@ import NotFound from './pages/NotFound.vue'
 import HomeLayout from './layouts/HomeLayout.vue'
 import AdminLayout from './layouts/AdminLayout.vue'
 
+import auth from './middlewares/auth.js'
+
 const router = createRouter({
     history: createWebHashHistory(),
     routes:  [
@@ -51,6 +53,7 @@ const router = createRouter({
             path: 'products/:productId?',
             component: Product,
             name: 'products-show',
+            beforeEnter: [auth],
             meta: {
               auth: true
             }
@@ -101,23 +104,23 @@ const router = createRouter({
 
 
 
-router.beforeResolve((to, from) => {
-  if (to.meta.auth) {
-    return { name: 'login' }
-  }
-  // if (to.meta.guest) {
-  //   return { name: 'home' }
-  // }
+// router.beforeResolve((to, from) => {
+//   if (to.meta.auth) {
+//     return { name: 'login' }
+//   }
+//   // if (to.meta.guest) {
+//   //   return { name: 'home' }
+//   // }
 
-  if (to.name === 'posts-show') {
-    // try {
-    //   await axios.post('...')
-    // } catch (error) {
+//   if (to.name === 'posts-show') {
+//     // try {
+//     //   await axios.post('...')
+//     // } catch (error) {
       
-    // }
-    return false
-  }
-})
+//     // }
+//     return false
+//   }
+// })
 
 
 // router.afterEach((to, from, failure) => {
