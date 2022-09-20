@@ -27,6 +27,9 @@ const router = createRouter({
             path: 'auth/login',
             component: Login,
             name: 'login',
+            meta: {
+              guest: true
+            }
           },
           {
             path: 'about',
@@ -48,6 +51,9 @@ const router = createRouter({
             path: 'products/:productId?',
             component: Product,
             name: 'products-show',
+            meta: {
+              auth: true
+            }
           },
         ]
       },
@@ -58,7 +64,10 @@ const router = createRouter({
           {
             path: '@:username', // /admin/@tofiq
             component: Profile,
-            alias: ['@:username/profile', ':username/posts'] // /admin/@tofiq/profile - /admin/tofiq/posts
+            alias: ['@:username/profile', ':username/posts'], // /admin/@tofiq/profile - /admin/tofiq/posts
+            meta: {
+              auth: true
+            }
           },
         ]
       },
@@ -92,25 +101,28 @@ const router = createRouter({
 
 
 
-// router.beforeResolve((to, from) => {
-//   if (to.name === 'products-show') {
-//     return { name: 'login' }
-//   }
+router.beforeResolve((to, from) => {
+  if (to.meta.auth) {
+    return { name: 'login' }
+  }
+  // if (to.meta.guest) {
+  //   return { name: 'home' }
+  // }
 
-//   if (to.name === 'posts-show') {
-//     // try {
-//     //   await axios.post('...')
-//     // } catch (error) {
+  if (to.name === 'posts-show') {
+    // try {
+    //   await axios.post('...')
+    // } catch (error) {
       
-//     // }
-//     return false
-//   }
-// })
-
-
-router.afterEach((to, from, failure) => {
-  console.log({ to, from, failure })
+    // }
+    return false
+  }
 })
+
+
+// router.afterEach((to, from, failure) => {
+//   console.log({ to, from, failure })
+// })
 
 
 export default router
