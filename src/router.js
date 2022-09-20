@@ -10,7 +10,7 @@ import NotFound from './pages/NotFound.vue'
 import HomeLayout from './layouts/HomeLayout.vue'
 import AdminLayout from './layouts/AdminLayout.vue'
 
-import auth from './middlewares/auth.js'
+// import auth from './middlewares/auth.js'
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -29,9 +29,9 @@ const router = createRouter({
             path: 'auth/login',
             component: Login,
             name: 'login',
-            meta: {
-              guest: true
-            }
+            // meta: {
+            //   guest: true
+            // }
           },
           {
             path: 'about',
@@ -53,10 +53,10 @@ const router = createRouter({
             path: 'products/:productId?',
             component: Product,
             name: 'products-show',
-            beforeEnter: [auth],
-            meta: {
-              auth: true
-            }
+            // beforeEnter: [auth],
+            // meta: {
+            //   auth: true
+            // }
           },
         ]
       },
@@ -68,9 +68,9 @@ const router = createRouter({
             path: '@:username', // /admin/@tofiq
             component: Profile,
             alias: ['@:username/profile', ':username/posts'], // /admin/@tofiq/profile - /admin/tofiq/posts
-            meta: {
-              auth: true
-            }
+            // meta: {
+            //   auth: true
+            // }
           },
         ]
       },
